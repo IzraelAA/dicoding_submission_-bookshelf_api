@@ -1,12 +1,21 @@
-import express from 'express';
+import Hapi from '@hapi/hapi';
 import booksRoutes from './routes/books.js';
 
-const app = express();
-const port = 9000;
+const init = async () => {
+    const server = Hapi.server({
+        port: 9000,
+        host: 'localhost',
+    });
 
-app.use(express.json());
-app.use('/books', booksRoutes);
+    server.route(booksRoutes);
 
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+    await server.start();
+    console.log(`Server running on port ${server.info.port}`);
+};
+
+process.on('unhandledRejection', (err) => {
+    console.log(err);
+    process.exit(1);
 });
+
+init();

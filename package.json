@@ -12,8 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.19.2",
-    "nanoid": "^5.0.7"
+    "@hapi/hapi": "^21.3.9"
   },
   "devDependencies": {
     "eslint": "^8.29.0",
